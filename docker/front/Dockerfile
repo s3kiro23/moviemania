@@ -50,7 +50,7 @@ RUN apk add --no-cache curl
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE 3030
 
 # Lancer l'application Next.js
 CMD ["npm", "start"]
