@@ -46,8 +46,6 @@ COPY --from=builder /app/package.json ./package.json
 # Réappliquer les permissions au dossier cache
 RUN mkdir -p /app/.next/cache/images && chown -R nextjs:nodejs /app/.next && chmod -R 777 /app/.next/cache
 
-RUN apk add --no-cache curl
-
 USER nextjs
 
 EXPOSE 3030
