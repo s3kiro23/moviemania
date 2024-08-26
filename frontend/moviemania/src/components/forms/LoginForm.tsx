@@ -21,20 +21,14 @@ export function LoginForm() {
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isHovered, setIsHovered] = useState(false);
-	// const [formState, formAction] = useFormState(loginUserAction, INITIAL_STATE);
-	// const [message, setMessage] = useState<string | null>(null);
+	const [formState, formAction] = useFormState(loginUserAction, INITIAL_STATE);
+	const [message, setMessage] = useState<string | null>(null);
 
-	// useEffect(() => {
-	//    if (formState?.message) {
-	//       setMessage(formState.message);
-	//       if (formState.message === "Login successful!") {
-	//          // Redirection vers une nouvelle page après succès
-	//          setTimeout(() => {
-	//             window.location.href = "/"; // Ajuste l'URL selon tes besoins
-	//          }, 1000); // Temps d'attente avant redirection, ajustable
-	//       }
-	//    }
-	// }, [formState?.message]);
+	useEffect(() => {
+		if (formState?.message) {
+			setMessage(formState.message);
+		}
+	}, [formState?.message]);
 
 	const [data, setData] = useState({
 		username: "",
@@ -44,8 +38,8 @@ export function LoginForm() {
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		setIsLoading(true);
-		// await formAction(new FormData(event.target as HTMLFormElement));
-		// setIsLoading(false);
+		await formAction(new FormData(event.target as HTMLFormElement));
+		setIsLoading(false);
 		await signIn("credentials", {
 			...data,
 			redirect: false,
@@ -79,7 +73,7 @@ export function LoginForm() {
 								setData({ ...data, username: e.target.value });
 							}}
 						/>
-						{/* <ZodErrors error={formState?.zodErrors?.email} /> */}
+						<ZodErrors error={formState?.zodErrors?.email} />
 					</div>
 					<div className="grid gap-1">
 						<div className="sr-only">Password</div>
@@ -95,7 +89,7 @@ export function LoginForm() {
 								setData({ ...data, password: e.target.value });
 							}}
 						/>
-						{/* <ZodErrors error={formState?.zodErrors?.password} /> */}
+						<ZodErrors error={formState?.zodErrors?.password} />
 					</div>
 					<Button
 						variant="default"
@@ -108,7 +102,7 @@ export function LoginForm() {
 			</form>
 
 			{/* Affichage du message */}
-			{/* {message && <div className="mt-4 p-4 bg-green-500 text-white rounded-md">{message}</div>} */}
+			{/* {message && <div className="mt-4 p-4 bg-red-500 text-white rounded-md">{message}</div>} */}
 
 			<div className="relative flex items-center my-4">
 				<div className="flex-grow border-t border-gray-300"></div>

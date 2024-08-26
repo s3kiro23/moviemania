@@ -63,9 +63,10 @@ export async function loginUserService(userData: LoginUserProps) {
 				},
 			}
 		);
-		return response.data;
-	} catch (error) {
-		console.error("loginUserService error", error);
-		return { error: "An error occurred while logging in" };
+		if (response.status === 200) {
+			return { success: "Connexion réussi !" };
+		}
+	} catch (axiosError) {
+		return { error: "L'association de cet email et mot de passe n'existe pas" };
 	}
 }
