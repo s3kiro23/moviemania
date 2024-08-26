@@ -30,7 +30,7 @@ function MediaCard({ media, origin }: ProfileMediaCardProps) {
 							className={`absolute rounded-md inset-0 flex items-center justify-center opacity-0 hover:opacity-50 hover:bg-black transition-opacity duration-300 ease-in-out hover:border-2 hover:border-primary`}
 						></div>
 					</div>
-					<span className="text-gray-400 font-semibold pt-1">{truncateText(media.title, 28)}</span>
+					<span className="text-gray-400 font-semibold pt-1">{truncateText(media.title, 19)}</span>
 					{origin === "ratings" ? <ProfileStarRating rating={media.note} /> : ""}
 				</div>
 			</Link>

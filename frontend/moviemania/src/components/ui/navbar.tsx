@@ -211,7 +211,7 @@ export default function Navbar() {
 						Sauvegardés
 					</Link>
                <Link
-						href="/profile/rated"
+						href="/profile/ratings"
 						className="block text-white"
 						onClick={handleMenuItemClick}
 					>
