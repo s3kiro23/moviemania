@@ -11,7 +11,6 @@ const operationMap: any = {
 export async function PUT(req: NextRequest) {
 	try {
 		const { operation, session, formData } = await req.json();
-
 		if (!operation || !operationMap[operation]) {
 			return NextResponse.json({ error: "Invalid operation" }, { status: 400 });
 		}

@@ -5,6 +5,7 @@ import { Button } from "@/src/components/ui/button";
 import { deleteProfile } from "@/app/api/profile/updateProfile";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 function DeleteForm({ user }: any) {
 	const { data: session } = useSession();
@@ -25,9 +26,12 @@ function DeleteForm({ user }: any) {
 		setIsLoading(true);
 		const result = await deleteProfile(session);
 		if (result?.success) {
-			signOut({ callbackUrl: "/signup" });
+			toast.success("Votre compte a été supprimé avec succès, redirection en cours...", { autoClose: 3000 });
+			setTimeout(() => {
+				signOut({ callbackUrl: "/signup" });
+			}, 3000);
 		} else {
-			console.error("La suppression a échoué");
+			toast.error("Erreur lors de la suppression du compte...", { autoClose: 2000 });
 		}
 		setIsLoading(false);
 	};

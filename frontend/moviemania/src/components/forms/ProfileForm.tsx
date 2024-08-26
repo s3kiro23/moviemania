@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/src/components/ui/button";
 import { useSession } from "next-auth/react";
 import { updateProfile } from "@/app/api/profile/updateProfile";
+import { toast } from "react-toastify";
 
 function ProfileForm({ user }: any) {
 	const { data: session } = useSession();
@@ -24,8 +25,13 @@ function ProfileForm({ user }: any) {
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		setIsLoading(true);
-		await updateProfile("updateProfile", session, formData);
-		//toast.success("Profile updated successfully");
+		const response = await updateProfile("updateProfile", session, formData);
+		if (response.error) {
+			toast.error(response.error, { autoClose: 2000 });
+			setIsLoading(false);
+			return;
+		}
+		toast.success(response.success, { autoClose: 2000 });
 		setIsLoading(false);
 	};
 	return (

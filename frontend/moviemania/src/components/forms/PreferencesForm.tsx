@@ -45,7 +45,7 @@ export default function PreferencesForm({ onBackClick, formData }: PreferencesFo
 			return;
 		}
 		toast.success(response?.success, { autoClose: 2000 });
-		router.push("/login");
+		setTimeout(() => router.push("/login"), 2000);
 	};
 
 	return (
