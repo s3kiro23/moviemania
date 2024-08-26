@@ -48,7 +48,7 @@ export default function PreferencesForm({ onBackClick, formData }: PreferencesFo
 
 	return (
 		<form onSubmit={handleFormSubmit}>
-			<div className="flex flex-col md:flex-row gap-16 items-center justify-center">
+			<div className="flex flex-col md:flex-row gap-5 md:gap-16 items-center justify-center">
 				<div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 border-t-2 pt-10 md:pt-14">
 					<FavoriteGenres />
 				</div>

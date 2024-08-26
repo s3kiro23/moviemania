@@ -32,7 +32,7 @@ const SignupPage = () => {
 						width={300}
 						height={300}
 					/>
-					<div className="w-auto p-10 rounded-3xl bg-none sm:bg-gradient-to-b sm:from-[rgba(66,242,247,0.1)] sm:to-[rgba(255,255,255,0.1)]">
+					<div className="w-auto p-5 md:p-10 rounded-3xl bg-none sm:bg-gradient-to-b sm:from-[rgba(66,242,247,0.1)] sm:to-[rgba(255,255,255,0.1)]">
 						<div className="mx-auto flex w-full flex-col justify-center space-y-6">
 							<div className="flex flex-col space-y-2 text-center">
 								<h1 className="text-4xl font-semibold text-white">Créer un compte</h1>
@@ -69,29 +69,27 @@ const SignupPage = () => {
 					</div>
 				</>
 			) : (
-				<>
-					<div className="flex flex-col gap-4">
-						<div className="flex flex-row gap-5 items-center">
-							<div className="rounded-full bg-white w-11 h-11 relative">
-								<Image
-									className="absolute start-1 top-1"
-									src={Popcorn}
-									alt="popcorn"
-									width={35}
-									height={35}
-								/>
-							</div>
-							<div className="text-white">
-								<h2 className="md:text-xl">Quels genres de films préférez-vous ?</h2>
-								<h4 className="md:text-md italic">Sélectionnez vos préférences</h4>
-							</div>
+				<div className="flex flex-col gap-4">
+					<div className="flex flex-row gap-5 items-center">
+						<div className="rounded-full bg-white w-11 h-11 relative">
+							<Image
+								className="absolute start-1 top-1"
+								src={Popcorn}
+								alt="popcorn"
+								width={35}
+								height={35}
+							/>
 						</div>
-						<PreferencesForm
-							onBackClick={handleBackClick}
-							formData={formData}
-						/>
+						<div className="text-white">
+							<h2 className="md:text-xl">Quels genres de films préférez-vous ?</h2>
+							<h4 className="md:text-md italic">Sélectionnez vos préférences</h4>
+						</div>
 					</div>
-				</>
+					<PreferencesForm
+						onBackClick={handleBackClick}
+						formData={formData}
+					/>
+				</div>
 			)}
 		</main>
 	);
