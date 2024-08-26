@@ -45,7 +45,7 @@ const Modal: React.FC<PopupProps> = ({ movie, userMovieProps, onClose }) => {
 				<h2 className="text-xl text-gray-300 text-center">J'ai vu ça</h2>
 				<Link href={`/details-film/${movie.title}`}>
 					<div className="flex flex-col items-start">
-						<div className="w-full h-64 sm:h-80 relative overflow-hidden rounded-md">
+						<div className="w-full h-80 relative overflow-hidden rounded-md">
 							<Image
 								className={`rounded-md`}
 								src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_PATH}w500/${movie.poster_path}`}

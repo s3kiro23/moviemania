@@ -87,12 +87,15 @@ export interface ActionButtonProps {
 
 export interface ActionButtonGroupsProps extends MovieDetailsProps {}
 
-export interface patchUserProfileProps {
+export interface User {
 	email?: string;
 	nom?: string;
 	prenom?: string;
 	sexe?: string;
 	birthday?: string;
+}
+
+export interface patchUserProfileProps extends User {
 	current_password?: string;
 	new_password?: string;
 }
@@ -104,4 +107,16 @@ export interface ImageByGenre {
 export interface MovieSearchResultsProps {
 	movieResults: Movie[];
 	onSelectMovie: () => void;
+}
+
+export interface ProfileDetailsProps {
+	user: User;
+	movieuser?: MovieUser;
+	enriched: boolean;
+	page?: string;
+}
+
+export interface MovieUser {
+	data: { movie_id: number; note: number; saved: boolean }[];
+	count: number;
 }

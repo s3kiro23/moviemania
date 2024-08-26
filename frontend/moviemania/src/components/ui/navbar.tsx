@@ -56,7 +56,7 @@ export default function Navbar() {
 	  }, [menuOpen]);
 
 	return (
-		<nav className="bg-customBackground py-2 px-5 sticky top-0 z-20">
+		<nav className="bg-customBackground py-3 px-5 sticky top-0 z-20">
 			{/* Navbar Desktop */}
 			<div className="hidden lg:flex items-center justify-between mx-auto">
 				<div className="flex items-center space-x-4">
