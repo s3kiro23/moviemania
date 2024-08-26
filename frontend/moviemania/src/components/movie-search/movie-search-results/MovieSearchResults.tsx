@@ -7,9 +7,11 @@ import { extractYear } from "@/src/utils/common";
 
 const MovieSearchResults: React.FC<MovieSearchResultsProps> = ({ movieResults, onSelectMovie }) => {
 	return (
-		<div className="w-full rounded-lg border border-1 border-gray-600 absolute z-50 bg-[#1F2937] top-11 p-2.5 shadow-md font-Nunito">
-			{movieResults.map((movie) => (
-				<>
+		<div className="w-full rounded-lg border border-1 border-gray-600 absolute z-50 bg-[#1F2937] top-11 p-2.5 shadow-md font-Nunito max-h-[calc(100vh-3rem)] overflow-y-auto">
+			{movieResults.length === 0 ? (
+				<div className="text-white p-2">Aucun résultat trouvé</div>
+			) : (
+				movieResults.map((movie) => (
 					<Link
 						href={`/movie/${movie.movie_id}`}
 						onMouseDown={(e) => e.preventDefault()}
@@ -34,8 +36,8 @@ const MovieSearchResults: React.FC<MovieSearchResultsProps> = ({ movieResults, o
 							</div>
 						</div>
 					</Link>
-				</>
-			))}
+				))
+			)}
 		</div>
 	);
 };
