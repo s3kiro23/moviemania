@@ -5,6 +5,8 @@ import AuthProvider from "@/src/components/auth-provider/AuthProvider";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import ConditionalNavbar from "@/src/components/ui/conditionalNavbar";
 import ConditionalFooter from "@/src/components/ui/conditionaFooter";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -26,6 +28,7 @@ export default function RootLayout({
                {children}
                <ConditionalFooter />
             </AuthProvider>
+            <ToastContainer />
          </body>
       </html>
    );

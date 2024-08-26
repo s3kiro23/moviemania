@@ -8,6 +8,7 @@ import { Button } from "@/src/components/ui/button";
 import { useRouter } from "next/navigation";
 import FavoriteGenres from "@/src/components/favorite-genres/FavoriteGenres";
 import ChevronRight from "@/public/chevron-right.png";
+import { toast } from "react-toastify";
 
 interface PreferencesFormProps {
 	onBackClick: () => void;
@@ -38,12 +39,13 @@ export default function PreferencesForm({ onBackClick, formData }: PreferencesFo
 			genres,
 		};
 
-		try {
-			await registerUserService(mergedData);
-			router.push("/login");
-		} catch (error) {
-			alert("Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.");
+		const response = await registerUserService(mergedData);
+		if (response?.error) {
+			toast.error(response.error, { autoClose: 2000 });
+			return;
 		}
+		toast.success(response?.success, { autoClose: 2000 });
+		router.push("/login");
 	};
 
 	return (

@@ -39,10 +39,11 @@ export async function registerUserService(userData: RegisterUserProps) {
 			},
 			data: JSON.stringify({ ...userData }),
 		});
-		return response.data;
+		if (response.status === 200) {
+			return { success: "Enregistrement réussi ! Redirection vers la page de connexion..." };
+		}
 	} catch (axiosError) {
-		console.error("Erreur lors de l'enregistrement de l'utilisateur :", axiosError);
-		throw axiosError;
+		return { error: "Un problème est survenue lors de l'enregistrement..." };
 	}
 }
 
