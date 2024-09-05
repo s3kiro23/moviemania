@@ -6,7 +6,7 @@ import Logo from "@/public/logo.png";
 import { LoginForm } from "@/src/components/forms/LoginForm";
 
 export const metadata: Metadata = {
-   title: "Connexion",
+   title: "MovieMania - Connexion",
 };
 
 const LoginPage = () => {
