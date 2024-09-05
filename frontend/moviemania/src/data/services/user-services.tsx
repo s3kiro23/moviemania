@@ -145,6 +145,7 @@ export const getMovieUser = async (session: any) => {
 
 export const getMovieUserBy = async (session: any, id: number) => {
 	try {
+		console.log("session", session)
 		const response = await axios({
 			url: `${process.env.NEXT_PUBLIC_USERS_API_URL}/api/v1/movieusers/${id}`,
 			method: "GET",

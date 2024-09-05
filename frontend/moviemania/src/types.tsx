@@ -75,7 +75,6 @@ export interface PopupProps {
 
 export interface MovieDetailsProps {
 	movie: Movie;
-	userMovieProps: MovieUserProps;
 }
 
 export interface ActionButtonProps {

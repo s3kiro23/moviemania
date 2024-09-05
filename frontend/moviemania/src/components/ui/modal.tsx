@@ -6,15 +6,22 @@ import Link from "next/link";
 import { updateMovieState } from "@/app/api/movie-actions/updateMovieState";
 import { useSession } from "next-auth/react";
 import { PopupProps } from "@/src/types";
+import { useMovieStore } from "@/src/store/movieStore"; // Import du store Zustand
 
 const Modal: React.FC<PopupProps> = ({ movie, userMovieProps, onClose }) => {
 	const { data: session } = useSession();
 	const [rating, setRating] = useState<number | null>(userMovieProps?.note ?? null);
 	const [hover, setHover] = useState<number | null>(null);
 
+	// Accède à la fonction de mise à jour du store
+	const { updateMovie } = useMovieStore((state) => ({
+		updateMovie: state.updateMovie,
+	}));
+
 	const resetRating = async () => {
 		setRating(null);
 		await updateMovieState(session, { movie_id: movie.movie_id, note: 0, saved: false });
+		updateMovie(movie.movie_id, { note: 0, saved: false }); // Met à jour le store
 	};
 
 	useEffect(() => {
@@ -27,6 +34,7 @@ const Modal: React.FC<PopupProps> = ({ movie, userMovieProps, onClose }) => {
 	const handleSubmit = async (ratingValue: number) => {
 		setRating(ratingValue);
 		await updateMovieState(session, { movie_id: movie.movie_id, note: ratingValue, saved: false });
+		updateMovie(movie.movie_id, { note: ratingValue, saved: false }); // Met à jour le store
 		onClose();
 	};
 
@@ -52,7 +60,7 @@ const Modal: React.FC<PopupProps> = ({ movie, userMovieProps, onClose }) => {
 								alt={movie.title}
 								fill
 								sizes="width: 100%, height: 300px"
-							></Image>
+							/>
 						</div>
 					</div>
 				</Link>

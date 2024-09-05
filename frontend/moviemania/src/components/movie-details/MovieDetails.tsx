@@ -5,7 +5,7 @@ import { MovieDetailsProps } from "@/src/types";
 import { extractYear, convertMinutesToHours, formatDate } from "@/src/utils/common";
 import { ActionsButtonsGroups } from "../actions-buttons-groups/ActionsButtonsGroups";
 
-const MovieDetails: React.FC<MovieDetailsProps> = ({ movie, userMovieProps }) => {
+const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
 	// Filtre les crédits pour obtenir les acteurs, les réalisateurs et les scénaristes
 	const actors = movie.credits.filter((credit) => credit.job.title === "Acting").map((credit) => credit.people.name);
 	const directors = movie.credits.filter((credit) => credit.job.title === "Director").map((credit) => credit.people.name);
@@ -35,7 +35,6 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie, userMovieProps }) =>
 
 						<ActionsButtonsGroups
 							movie={movie}
-							userMovieProps={userMovieProps}
 						/>
 					</div>
 				</div>
