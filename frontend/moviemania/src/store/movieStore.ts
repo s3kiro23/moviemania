@@ -1,5 +1,5 @@
 // src/store/movieStore.ts
-import create from "zustand";
+import { create } from 'zustand'
 import { MovieUserProps } from "@/src/types";
 
 interface MovieStoreState {

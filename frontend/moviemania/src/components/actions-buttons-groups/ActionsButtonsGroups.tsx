@@ -64,9 +64,6 @@ export const ActionsButtonsGroups: React.FC<ActionButtonGroupsProps> = ({ movie 
 					note: userMovie.note,
 					saved: !userMovie.saved,
 				};
-
-				console.log("updatedUserMovie", updatedUserMovie);
-
 				updateMovie(movie.movie_id, updatedUserMovie);
 			} catch (error) {
 				console.error("Error updating movie state:", error);
@@ -77,7 +74,7 @@ export const ActionsButtonsGroups: React.FC<ActionButtonGroupsProps> = ({ movie 
 	return (
 		<>
 			<div className="flex space-x-4 mb-4 justify-center sm:justify-start">
-				{userMovie && (userMovie.note === 0 || userMovie.saved) ? (
+				{userMovie && (userMovie.note === 0 || userMovie.saved || userMovie.note === null) ? (
 					<ActionButton
 						icon="fa-heart"
 						ariaLabel="Like"
@@ -93,7 +90,7 @@ export const ActionsButtonsGroups: React.FC<ActionButtonGroupsProps> = ({ movie 
 					onClick={() => openPopup()}
 					isActive={userMovie ? userMovie.note > 0 : true}
 				/>
-				{userMovie && (userMovie.note === 0 || userMovie.saved) ? (
+				{userMovie && (userMovie.note === 0 || userMovie.saved || userMovie.note === null) ? (
 					<ActionButton
 						icon="fa-thumbs-down"
 						ariaLabel="Dislike"

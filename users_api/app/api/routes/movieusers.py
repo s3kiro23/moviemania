@@ -55,7 +55,7 @@ def read_movieuser(session: SessionDep, current_user: CurrentUser, id: int) -> A
     """
     movieuser = session.get(MovieUser, id)
     if not movieuser:
-        raise HTTPException(status_code=404, detail="movieuser not found")
+        return HTTPException(status_code=404, detail="movieuser not found")
     if not current_user.is_superuser and (movieuser.user_id != current_user.user_id):
         raise HTTPException(status_code=400, detail="Not enough permissions")
     return movieuser
