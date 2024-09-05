@@ -21,7 +21,7 @@ const Modal: React.FC<PopupProps> = ({ movie, userMovieProps, onClose }) => {
 	const resetRating = async () => {
 		setRating(null);
 		await updateMovieState(session, { movie_id: movie.movie_id, note: 0, saved: false });
-		updateMovie(movie.movie_id, { note: 0, saved: false }); // Met à jour le store
+		updateMovie(movie.movie_id, { movie_id: movie.movie_id, note: 0, saved: false }); // Met à jour le store
 	};
 
 	useEffect(() => {
@@ -34,7 +34,7 @@ const Modal: React.FC<PopupProps> = ({ movie, userMovieProps, onClose }) => {
 	const handleSubmit = async (ratingValue: number) => {
 		setRating(ratingValue);
 		await updateMovieState(session, { movie_id: movie.movie_id, note: ratingValue, saved: false });
-		updateMovie(movie.movie_id, { note: ratingValue, saved: false }); // Met à jour le store
+		updateMovie(movie.movie_id, { movie_id: movie.movie_id, note: ratingValue, saved: false }); // Met à jour le store
 		onClose();
 	};
 

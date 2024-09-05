@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Modal from "@/src/components/ui/modal";
 import { useSession } from "next-auth/react";
-import { ActionButtonGroupsProps } from "@/src/types";
+import { ActionButtonGroupsProps, MovieUserProps } from "@/src/types";
 import ActionButton from "@/src/components/ui/actionsButtons";
 import { updateMovieState } from "@/app/api/movie-actions/updateMovieState";
 import { getMovieUserBy } from "@/src/data/services/user-services"; // Assure-toi d'importer correctement la fonction
@@ -12,15 +12,13 @@ import { useMovieStore } from "@/src/store/movieStore"; // Assure-toi que le sto
 export const ActionsButtonsGroups: React.FC<ActionButtonGroupsProps> = ({ movie }) => {
 	const { data: session } = useSession(); // Récupère la session
 	const [showPopup, setShowPopup] = useState(false);
-	const [userMovie, setUserMovie] = useState(null); // Initialisé à null ou à une valeur par défaut
+	const [userMovie, setUserMovie] = useState<MovieUserProps | null>(null); // Initialisé à null ou à une valeur par défaut
 
 	// Accède au store Zustand
 	const { userMovie: storedUserMovie, updateMovie } = useMovieStore((state) => ({
 		userMovie: state.userMovie[movie.movie_id],
 		updateMovie: state.updateMovie,
 	}));
-
-	console.log("storedUserMovie", storedUserMovie);
 
 	// Fonction pour récupérer l'état du film depuis l'API
 	const fetchMovieState = useCallback(async () => {
@@ -54,7 +52,7 @@ export const ActionsButtonsGroups: React.FC<ActionButtonGroupsProps> = ({ movie 
 	const saveMovie = async () => {
 		if (session && userMovie) {
 			try {
-				const updatedMovieUser = await updateMovieState(session, {
+				await updateMovieState(session, {
 					movie_id: movie.movie_id,
 					note: userMovie.note,
 					saved: !userMovie.saved,
@@ -93,7 +91,7 @@ export const ActionsButtonsGroups: React.FC<ActionButtonGroupsProps> = ({ movie 
 					icon="fa-check"
 					ariaLabel="Check"
 					onClick={() => openPopup()}
-					isActive={userMovie?.note > 0}
+					isActive={userMovie ? userMovie.note > 0 : true}
 				/>
 				{userMovie && (userMovie.note === 0 || userMovie.saved) ? (
 					<ActionButton
@@ -104,7 +102,7 @@ export const ActionsButtonsGroups: React.FC<ActionButtonGroupsProps> = ({ movie 
 					""
 				)}
 			</div>
-			{showPopup && (
+			{showPopup && userMovie && (
 				<Modal
 					movie={movie}
 					userMovieProps={userMovie}
