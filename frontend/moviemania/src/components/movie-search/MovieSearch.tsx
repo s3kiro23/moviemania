@@ -21,7 +21,6 @@ const MovieSearch = () => {
 				params: { query },
 			});
 			const searchResults = response.data;
-			console.log("searchResults", searchResults);
 			setMovieResults(searchResults.filter((movie: Movie) => movie.backdrop_path));
 		} catch (error) {
 			console.error("Error fetching movie data:", error);
