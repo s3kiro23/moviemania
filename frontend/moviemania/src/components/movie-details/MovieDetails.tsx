@@ -17,10 +17,9 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
 				<Image
 					src={`${process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_PATH}original${movie.backdrop_path}`}
 					alt="Film Poster"
-					layout="fill"
-					objectFit="cover"
+					fill
 					quality={100}
-					className="border-b-2 border-customBackground"
+					className="border-b-2 border-customBackground object-cover"
 				/>
 
 				<div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#22272E]"></div>

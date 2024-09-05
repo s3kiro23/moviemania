@@ -44,16 +44,16 @@ export default function Navbar() {
 
 	useEffect(() => {
 		if (menuOpen) {
-		  document.body.classList.add('no-scroll');
+			document.body.classList.add("no-scroll");
 		} else {
-		  document.body.classList.remove('no-scroll');
+			document.body.classList.remove("no-scroll");
 		}
-	
+
 		// Clean up the effect when component unmounts
 		return () => {
-		  document.body.classList.remove('no-scroll');
+			document.body.classList.remove("no-scroll");
 		};
-	  }, [menuOpen]);
+	}, [menuOpen]);
 
 	return (
 		<nav className="bg-customBackground py-3 px-5 sticky top-0 z-20">
@@ -202,7 +202,7 @@ export default function Navbar() {
 					>
 						Accueil
 					</Link>
-               <span className="font-semibold border-t border-gray-600 pt-5 text-gray-500">Ma bibliothèque</span>
+					<span className="font-semibold border-t border-gray-600 pt-5 text-gray-500">Ma bibliothèque</span>
 					<Link
 						href="/profile/saved"
 						className="block text-white"
@@ -210,14 +210,14 @@ export default function Navbar() {
 					>
 						Sauvegardés
 					</Link>
-               <Link
+					<Link
 						href="/profile/ratings"
 						className="block text-white"
 						onClick={handleMenuItemClick}
 					>
 						Notés
 					</Link>
-               <span className="font-semibold border-t border-gray-600 pt-5 text-gray-500">Profil</span>
+					<span className="font-semibold border-t border-gray-600 pt-5 text-gray-500">Profil</span>
 					<Link
 						href="/profile"
 						className="block text-white"
@@ -232,7 +232,7 @@ export default function Navbar() {
 					>
 						Paramètres
 					</Link>
-               <span className="font-semibold border-t border-gray-600 pt-5 text-gray-500">Informations</span>
+					<span className="font-semibold border-t border-gray-600 pt-5 text-gray-500">Informations</span>
 					<Link
 						href="/about"
 						className="block text-white"
@@ -254,7 +254,7 @@ export default function Navbar() {
 					>
 						Conditions d'utilisation
 					</Link>
-               <span className="font-semibold border-t border-gray-600 text-gray-500"></span>
+					<span className="font-semibold border-t border-gray-600 text-gray-500"></span>
 					<button
 						className="text-red-500 text-start font-semibold"
 						onClick={() => {
