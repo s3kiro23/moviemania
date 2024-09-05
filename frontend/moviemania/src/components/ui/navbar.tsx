@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
@@ -42,8 +42,21 @@ export default function Navbar() {
 		setMenuOpen(false);
 	};
 
+	useEffect(() => {
+		if (menuOpen) {
+		  document.body.classList.add('no-scroll');
+		} else {
+		  document.body.classList.remove('no-scroll');
+		}
+	
+		// Clean up the effect when component unmounts
+		return () => {
+		  document.body.classList.remove('no-scroll');
+		};
+	  }, [menuOpen]);
+
 	return (
-		<nav className="bg-customBackground py-2 px-5 sticky top-0 z-20">
+		<nav className="bg-customBackground py-3 px-5 sticky top-0 z-20">
 			{/* Navbar Desktop */}
 			<div className="hidden lg:flex items-center justify-between mx-auto">
 				<div className="flex items-center space-x-4">
@@ -180,7 +193,7 @@ export default function Navbar() {
 
 			{/* Menu Burger Content */}
 			{menuOpen && (
-				<div className="lg:hidden text-md fixed top-[48px] left-0 w-full h-full bg-customBackground z-50 flex flex-col space-y-4 p-4 overflow-y-auto">
+				<div className="lg:hidden text-md fixed top-[47px] left-0 w-full h-full bg-customBackground z-50 flex flex-col space-y-4 p-4 overflow-y-auto">
 					<MovieSearch />
 					<Link
 						href="/"
@@ -198,7 +211,7 @@ export default function Navbar() {
 						Sauvegardés
 					</Link>
                <Link
-						href="/profile/rated"
+						href="/profile/ratings"
 						className="block text-white"
 						onClick={handleMenuItemClick}
 					>

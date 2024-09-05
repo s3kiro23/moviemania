@@ -58,12 +58,11 @@ export const patchUserProfile = async (session: any, userData: patchUserProfileP
 			data: userData,
 		});
 		if (response.status === 200) {
-			console.log("Informations users mise à jour avec succès !");
+			return { success: "Opération réussie!" };
 		}
 	} catch (error) {
-		console.error("Erreur lors de la mise à jour du profil utilisateur:", error);
 		if (axios.isAxiosError(error)) {
-			console.error("Détails de l'erreur:", error.response?.data);
+			return { error: "Erreur lors de la mise à jour..." };
 		}
 	}
 };
@@ -79,17 +78,12 @@ export const deleteUserProfile = async (session: any) => {
 			},
 		});
 		if (response.status === 200) {
-			setTimeout(() => {
-				alert("User supprimé avec succès !");
-			}, 2000); // Délai de 2 secondes
 			return { success: true };
 		}
 	} catch (error) {
-		console.error("Erreur lors de la suppression du profil utilisateur:", error);
 		if (axios.isAxiosError(error)) {
-			console.error("Détails de l'erreur:", error.response?.data);
+			return { success: false };
 		}
-		return { success: false };
 	}
 };
 
@@ -110,12 +104,11 @@ export const updateUserPassword = async (session: any, userData: updateUserPassw
 			data: userData,
 		});
 		if (response.status === 200) {
-			console.log("Informations users mise à jour avec succès !");
+			return { success: "Mot de passe mis à jour!" };
 		}
 	} catch (error) {
-		console.error("Erreur lors de la mise à jour du profil utilisateur:", error);
 		if (axios.isAxiosError(error)) {
-			console.error("Détails de l'erreur:", error.response?.data);
+			return { error: "Erreur lors de la mise à jour du mot de passe..." };
 		}
 	}
 };

@@ -4,7 +4,7 @@ from fastapi import Depends, FastAPI, HTTPException, Request, Query
 from sqlalchemy.orm import Session, joinedload
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from app.redis_connect import connect_to_redis
+from app.redis import connect_to_redis, save_recommendations_to_redis
 import os
 from app.database import engine, get_db
 from app.recommendations import (
@@ -13,11 +13,9 @@ from app.recommendations import (
     TrendingRecommendationFetcher,
     models,
 )
-from fastapi.middleware.cors import CORSMiddleware
 
 import jwt
 from jwt import PyJWTError
-import datetime
 from app.recommendations.schemas import (
     CreditSchema,
     GenreSchema,
@@ -51,19 +49,6 @@ app.add_middleware(
 )
 
 models.Base.metadata.create_all(bind=engine)
-
-
-def save_recommendations_to_redis(client, user_id, recommendations):
-    try:
-        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-        key = f"recommendations:{user_id}:{timestamp}"
-        client.set(key, str(recommendations))
-        print(
-            f"Recommandations enregistrées pour l'utilisateur {user_id} avec la clé {key}"
-        )
-    except Exception as e:
-        print(f"Erreur lors de l'enregistrement des recommandations dans Redis : {e}")
-
 
 class TokenData(BaseModel):
     user_id: int

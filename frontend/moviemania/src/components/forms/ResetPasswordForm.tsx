@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/src/components/ui/button";
 import { updateProfile } from "@/app/api/profile/updateProfile";
 import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 function ResetPasswordForm() {
 	const { data: session } = useSession();
@@ -26,7 +27,13 @@ function ResetPasswordForm() {
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		setIsLoading(true);
-		await updateProfile("updatePassword", session, formData);
+		const response = await updateProfile("updatePassword", session, formData);
+		if (response.error) {
+			toast.error(response.error, { autoClose: 2000 });
+			setIsLoading(false);
+			return;
+		}
+		toast.success(response.success, { autoClose: 2000 });
 		setIsLoading(false);
 	};
 

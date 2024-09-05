@@ -8,6 +8,7 @@ import { Button } from "@/src/components/ui/button";
 import { useRouter } from "next/navigation";
 import FavoriteGenres from "@/src/components/favorite-genres/FavoriteGenres";
 import ChevronRight from "@/public/chevron-right.png";
+import { toast } from "react-toastify";
 
 interface PreferencesFormProps {
 	onBackClick: () => void;
@@ -38,17 +39,18 @@ export default function PreferencesForm({ onBackClick, formData }: PreferencesFo
 			genres,
 		};
 
-		try {
-			await registerUserService(mergedData);
-			router.push("/login");
-		} catch (error) {
-			alert("Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.");
+		const response = await registerUserService(mergedData);
+		if (response?.error) {
+			toast.error(response.error, { autoClose: 2000 });
+			return;
 		}
+		toast.success(response?.success, { autoClose: 2000 });
+		setTimeout(() => router.push("/login"), 2000);
 	};
 
 	return (
 		<form onSubmit={handleFormSubmit}>
-			<div className="flex flex-col md:flex-row gap-16 items-center justify-center">
+			<div className="flex flex-col md:flex-row gap-5 md:gap-16 items-center justify-center">
 				<div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 border-t-2 pt-10 md:pt-14">
 					<FavoriteGenres />
 				</div>
