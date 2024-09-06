@@ -12,7 +12,7 @@ interface patchUserProfileProps {
 export const getUserProfile = async (session: any) => {
 	try {
 		const response = await axios({
-			url: `${process.env.NEXT_PUBLIC_USERS_API_URL}/api/v1/users/me`,
+			url: `/api/users/v1/users/me`,
 			method: "GET",
 			headers: {
 				"Content-Type": "application",
@@ -28,7 +28,7 @@ export const getUserProfile = async (session: any) => {
 export const postGenresUser = async (session: any, genres: string[]) => {
 	try {
 		const response = await axios({
-			url: `${process.env.NEXT_PUBLIC_USERS_API_URL}/api/v1/genreusers/`,
+			url: `/api/users/v1/genreusers/`,
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -49,7 +49,7 @@ export const postGenresUser = async (session: any, genres: string[]) => {
 export const patchUserProfile = async (session: any, userData: patchUserProfileProps) => {
 	try {
 		const response = await axios({
-			url: `${process.env.NEXT_PUBLIC_USERS_API_URL}/api/v1/users/me`,
+			url: `/api/users/v1/users/me`,
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -70,7 +70,7 @@ export const patchUserProfile = async (session: any, userData: patchUserProfileP
 export const deleteUserProfile = async (session: any) => {
 	try {
 		const response = await axios({
-			url: `${process.env.NEXT_PUBLIC_USERS_API_URL}/api/v1/users/me`,
+			url: `/api/users/v1/users/me`,
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
@@ -95,7 +95,7 @@ interface updateUserPasswordProps {
 export const updateUserPassword = async (session: any, userData: updateUserPasswordProps) => {
 	try {
 		const response = await axios({
-			url: `${process.env.NEXT_PUBLIC_USERS_API_URL}/api/v1/users/me/password`,
+			url: `/api/users/v1/users/me/password`,
 			method: "PUT",
 			headers: {
 				ContentType: "application/json",
@@ -122,7 +122,7 @@ interface movieUserProps {
 export const getMovieUser = async (session: any) => {
 	try {
 		const response = await axios({
-			url: `${process.env.NEXT_PUBLIC_USERS_API_URL}/api/v1/movieusers/`,
+			url: `/api/users/v1/movieusers/`,
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -139,7 +139,7 @@ export const getMovieUser = async (session: any) => {
 export const getMovieUserBy = async (session: any, id: number) => {
 	try {
 		const response = await axios({
-			url: `${process.env.NEXT_PUBLIC_USERS_API_URL}/api/v1/movieusers/${id}`,
+			url: `/api/users/v1/movieusers/${id}`,
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -159,7 +159,7 @@ export const getMovieUserBy = async (session: any, id: number) => {
 export const postMovieUser = async (session: any, userData: movieUserProps) => {
 	try {
 		const response = await axios({
-			url: `${process.env.NEXT_PUBLIC_USERS_API_URL}/api/v1/movieusers/`,
+			url: `/api/users/v1/movieusers/`,
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -179,7 +179,7 @@ export const postMovieUser = async (session: any, userData: movieUserProps) => {
 export const updateMovieUser = async (session: any, userData: movieUserProps) => {
 	try {
 		const response = await axios({
-			url: `${process.env.NEXT_PUBLIC_USERS_API_URL}/api/v1/movieusers/`,
+			url: `/api/users/v1/movieusers/`,
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

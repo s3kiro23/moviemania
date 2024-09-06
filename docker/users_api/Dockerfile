@@ -28,5 +28,5 @@ COPY ./users_api/app /app/app
 
 EXPOSE 8888
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8888", "--log-level", "debug", "--access-log", "--ssl-keyfile=/app/certs/users_api.key", "--ssl-certfile=/app/certs/users_api.crt"]
-# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8888", "--log-level", "debug", "--access-log"]
+# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8888", "--log-level", "debug", "--access-log", "--ssl-keyfile=/app/certs/users_api.key", "--ssl-certfile=/app/certs/users_api.crt"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8888", "--log-level", "debug", "--access-log"]
